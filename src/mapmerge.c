@@ -23,6 +23,8 @@ void usage() {
 /*
  * mapmerge - a standalone tool for importing the rooms from one tintin++ map file into another
  *
+ * `make mapmerge` produces the executable for me
+ *
  * Use case:
  *   You have a main map file (main.map) you use in your mud.
  *   You get transported to some area you don't know so you create a new map with `#map create`
@@ -30,6 +32,7 @@ void usage() {
  *   Eventually you find your way back to a place where the two maps link up.
  *   If there's a room in main.map named 'North of the Two Rings' has a north exit to the room 'Small house' in new.map
  *   We can link the two maps with `mapmerge main.map 'North of the Two Rings' n new.map 'Small house' both
+ *   Note: this does not use brackets around the room names like tt++ map commands.
  * 
  *   If the 'both' argument is present, a south exit in 'Small house' will be added linking to 'North of the Two Rings'
  * 
@@ -52,7 +55,7 @@ int main(int argc, char *argv[]) {
     char *direction = NULL;
     char *destroom = NULL;
     int both = 0;
-    // mapmerge nanvaent.map '{North of the Two Rings}' n darklands.map '{Small house}' both
+    // mapmerge nanvaent.map 'North of the Two Rings' n darklands.map 'Small house' both
     //     0     1             2                        3     4             5             6
     printf("%d\n", argc);
     if (argc != 6 && argc != 7) {
